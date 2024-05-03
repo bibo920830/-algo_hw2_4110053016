@@ -1,0 +1,53 @@
+'''import numpy as np
+import matplotlib.pyplot as plt
+import time
+
+def topdown(n):
+    if n == 0 or n == 1:
+        return n
+    else:
+        return topdown(n-1)+topdown(n-2)
+    
+#測試時跑到49~50之間會crush 所以採用到f(48)
+
+TopDown=[] #收集用top down方法所得的f(1),f(2)...
+TopDownTime=[] #收集使用top down方法的執行時間
+for i in range(0, 49):
+    start_time = time.time()
+    TopDown.append(topdown(i))
+    end_time = time.time()
+    execution_time = end_time - start_time
+    TopDownTime.append(execution_time)
+    print(i)
+
+#作topdown time的圖
+x1=np.linspace(0,48,49)
+plt.plot(x1, TopDownTime, 'r')
+plt.title('TopDown execution time')
+plt.savefig('figs/TopDownexecutiontime.png')
+plt.show()
+
+
+BottomUp=[] #收集用bottom top方法所得的f(1),f(2)...
+BottomUpTime=[]#收集使用bottom top方法的執行時間
+
+for i in range(0,101):
+    start_time = time.time()    
+    if i == 0:
+        BottomUp.append(0)
+    elif i == 1:
+        BottomUp.append(1)
+    else:
+        BottomUp.append(BottomUp[i-1] + BottomUp[i-2])
+    end_time = time.time()
+    execution_time = end_time - start_time
+    BottomUpTime.append(execution_time)
+print(BottomUp)
+
+#作bottom top time的圖
+x2=np.linspace(0,100,101)
+plt.plot(x2, BottomUpTime, 'r')
+plt.title('ButtomUp execution time')
+plt.savefig('figs/ButtomUpexecutiontime.png')
+plt.show()
+'''
